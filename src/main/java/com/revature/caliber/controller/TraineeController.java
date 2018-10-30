@@ -17,16 +17,33 @@ import org.springframework.web.bind.annotation.RestController;
 import com.revature.caliber.pojo.Trainee;
 import com.revature.caliber.service.TraineeServiceModel;
 
+/** Controller for handling all requests having to do with trainees.
+ * 
+ * @author Ben Nemec and Jacques Myette
+ *
+ */
 @RestController
 @CrossOrigin(origins="*")
 @RequestMapping(value="user")
 public class TraineeController {
 	
+	/**
+	 * Logger for this class
+	 */
 	private static final Logger log = LoggerFactory.getLogger(TraineeController.class);
 	
+	/**
+	 * Autowired interface declaration for the trainee service
+	 */
 	@Autowired
 	private TraineeServiceModel tsm;
 	
+	/**
+	 * Handles get request for returning all trainees with the given batch id
+	 * as a request parameter
+	 * @param batch The batch id representing the batch to get all the trainees from
+	 * @return The list of trainees with the correct batch id as well as an ok http status code
+	 */
 	@GetMapping(value="all/trainee", produces=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Trainee>> findAllByBatch(
 			@RequestParam(required=true) Integer batch){
