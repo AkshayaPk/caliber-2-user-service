@@ -24,7 +24,6 @@ import com.revature.caliber.service.TraineeServiceModel;
  */
 @RestController
 @CrossOrigin(origins="*")
-@RequestMapping(value="user")
 public class TraineeController {
 	
 	/**
