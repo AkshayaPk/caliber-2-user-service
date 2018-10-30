@@ -108,10 +108,10 @@ public class Trainee implements Serializable {
 	/**
 	 * Constructor used mostly for testing. Default TrainingStatus as Training
 	 * 
-	 * @param name
-	 * @param resourceId
-	 * @param email
-	 * @param batch
+	 * @param name The name of the trainee
+	 * @param resourceId The resource id
+	 * @param email The trainee's email address
+	 * @param batchId The id of the trainee's batch
 	 */
 	public Trainee(String name, String resourceId, String email, Integer batchId) {
 		super();
