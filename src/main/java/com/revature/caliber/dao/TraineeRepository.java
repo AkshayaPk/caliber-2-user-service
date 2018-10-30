@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import com.revature.caliber.pojo.Trainee;
 
-/**
+/** Handles retrieving trainees from a database
  * @author Christian Dawson and Justin Donn
  * 
  */
