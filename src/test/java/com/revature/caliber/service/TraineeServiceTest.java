@@ -99,7 +99,7 @@ public class TraineeServiceTest {
 	@Before
 	public void setUp() throws Exception {
 		
-		when(tr.findAll()).thenReturn(traineesInBatchOne);
+		when(tr.findByBatchId(1)).thenReturn(traineesInBatchOne);
 		when(tr.findOne(3)).thenReturn(traineeThree);
 	}
 
