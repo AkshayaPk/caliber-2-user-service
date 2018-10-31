@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Implementation-Title: 1808-cal-v2-user-service
 Implementation-Version: 0.0.1-SNAPSHOT
-Built-By: slife
+Built-By: Chris
 Implementation-Vendor-Id: com.revature.caliber
 Build-Jdk: 1.8.0_181
 Implementation-URL: http://projects.spring.io/spring-boot/1808-cal-v2-

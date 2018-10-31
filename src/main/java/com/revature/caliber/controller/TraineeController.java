@@ -73,5 +73,15 @@ public class TraineeController {
 		tsm.save(trainee);
 		return new ResponseEntity<>(trainee, HttpStatus.CREATED);
 	}
+	/**
+	 * Handles post request for creating a trainee in a batch
+	 * @param trainee The trainee to be updated
+	 * @return The updated Trainee object and an accepted http status code
+	 */
+	public ResponseEntity<Trainee> updateTrainee(@Valid @RequestBody Trainee trainee) {
+		log.debug("Updating trainee: " + trainee);
+		tsm.update(trainee);
+		return new ResponseEntity<>(trainee, HttpStatus.ACCEPTED);
+	}
 
 }
