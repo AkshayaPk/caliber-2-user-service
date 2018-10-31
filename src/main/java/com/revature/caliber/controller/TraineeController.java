@@ -16,8 +16,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -78,6 +78,8 @@ public class TraineeController {
 	 * @param trainee The trainee to be updated
 	 * @return The updated Trainee object and an accepted http-status code
 	 */
+	@PutMapping(value="all/trainee/update", produces=MediaType.APPLICATION_JSON_VALUE)
+	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED)
 	public ResponseEntity<Trainee> updateTrainee(@Valid @RequestBody Trainee trainee) {
 		log.debug("Updating trainee: " + trainee);
 		tsm.update(trainee);
