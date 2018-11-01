@@ -2,6 +2,7 @@ package com.revature.caliber.pojo;
 
 import java.io.Serializable;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -14,6 +15,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * @author Adam Baker
  *
  */
+@JsonFormat(shape = JsonFormat.Shape.NATURAL)
 public enum TrainerRole implements Serializable {
 	@JsonProperty("ROLE_VP")
 	ROLE_VP,
