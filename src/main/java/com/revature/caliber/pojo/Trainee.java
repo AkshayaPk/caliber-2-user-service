@@ -13,20 +13,18 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+
 /**
- * The type Trainee
+ * Entity which allows a user to store data in a database using Hibernate.
+ * This entity is currently mapped to a table called CALIBER_TRAINEE
  */
 @Entity
 @Table(name = "CALIBER_TRAINEE")
-//@Cacheable
-//@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Trainee implements Serializable {
 
 	private static final long serialVersionUID = -9090223980655307018L;
@@ -69,7 +67,6 @@ public class Trainee implements Serializable {
 	@Column(name = "PROFILE_URL")
 	private String profileUrl;
 
-	// new columns
 	@Column(name = "RECRUITER_NAME")
 	private String recruiterName;
 
@@ -90,7 +87,6 @@ public class Trainee implements Serializable {
 
 	@Column(name = "REVPRO_PROJECT_COMPLETION")
 	private String projectCompletion;
-	// end of new columns
 
 	@Enumerated(EnumType.STRING)
 	@Column(name = "FLAG_STATUS")
