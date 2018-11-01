@@ -38,6 +38,7 @@ public class TraineeServiceImpl implements TraineeServiceModel {
 	@Override
 	public List<Trainee> findAllByBatch(Integer batchId) {
 		List<Trainee> trainees = dao.findByBatchId(batchId);
+		
 		return trainees;
 	}
 

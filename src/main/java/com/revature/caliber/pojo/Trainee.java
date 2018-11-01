@@ -56,7 +56,6 @@ public class Trainee implements Serializable {
 
 	@NotNull
 	@Column(name = "BATCH_ID", nullable = false)
-	@JsonBackReference(value = "traineeAndBatch")
 	//@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 	private Integer batchId;
 

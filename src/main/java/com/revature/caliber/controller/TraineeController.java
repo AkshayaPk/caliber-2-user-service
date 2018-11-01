@@ -55,8 +55,7 @@ public class TraineeController {
 			@RequestParam(required=true) Integer batch){
 		log.trace("in all/trainee: Looking for batch: " + batch);
 		List<Trainee> trainees = tsm.findAllByBatch(batch);
-		//List<Trainee> trainees = new ArrayList<Trainee>();
-		//trainees.add(new Trainee("Nemec, Ben", null, "bignems@rocketmail.com", 2200));
+		System.out.println(trainees.get(0));
 		return new ResponseEntity<>(trainees, HttpStatus.OK);
 	}
 	
