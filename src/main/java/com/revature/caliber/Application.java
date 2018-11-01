@@ -3,10 +3,9 @@ package com.revature.caliber;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 @SpringBootApplication
-@EnableDiscoveryClient
+// @EnableDiscoveryClient
 @EntityScan(basePackages= {"com.revature.caliber"})
 public class Application {
 
