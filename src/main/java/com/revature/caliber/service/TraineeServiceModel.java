@@ -35,7 +35,7 @@ public interface TraineeServiceModel {
 	 * Removes a trainee from the database
 	 * @param trainee The trainee to be removed from the database
 	 */
-	public void delete(Trainee trainee);
+	public void delete(Integer traineeId);
 	
 	/**
 	 * Switches the batch of a given trainee to the given batch

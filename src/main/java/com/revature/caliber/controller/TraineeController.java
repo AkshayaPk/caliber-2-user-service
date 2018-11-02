@@ -14,7 +14,9 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -73,7 +75,7 @@ public class TraineeController {
 		return new ResponseEntity<>(trainee, HttpStatus.CREATED);
 	}
 	/**
-	 * Handles post request for creating a trainee in a batch
+	 * Handles put request for creating a trainee in a batch
 	 * @param trainee The trainee to be updated
 	 * @return The updated Trainee object and an accepted http-status code
 	 */
@@ -83,6 +85,17 @@ public class TraineeController {
 		log.debug("Updating trainee: " + trainee);
 		tsm.update(trainee);
 		return new ResponseEntity<>(trainee, HttpStatus.ACCEPTED);
+	}
+	/**
+	 * Handles delete request for creating a trainee in a batch
+	 * @param id the id of the trainee to be deleted
+	 * @return a response entity that has a void value and an http-status of NO_CONTENT.
+	 */
+	@DeleteMapping(value="all/trainee/delete/{id}")
+	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED)
+	public ResponseEntity<Void> deleteTrainee(@PathVariable Integer id){
+		tsm.delete(id);
+		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 
 }
