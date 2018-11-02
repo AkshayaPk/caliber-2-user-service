@@ -52,11 +52,11 @@ public enum TrainingStatus implements Serializable{
 	 * Trainee is currently on a project
 	 */
 	@JsonProperty("Project")
-	Project,
+	PROJECT,
 	
 	/**
 	 * Trainee is currently in staging
 	 */
 	@JsonProperty("Staging")
-	Staging
+	STAGING
 }
