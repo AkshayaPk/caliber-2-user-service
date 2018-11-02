@@ -85,7 +85,7 @@ public class TraineeController {
 		log.debug("Updating trainee: " + trainee);
 		tsm.update(trainee);
 		return new ResponseEntity<>(trainee, HttpStatus.ACCEPTED);
-	}
+	}	
 	/**
 	 * Handles delete request for creating a trainee in a batch
 	 * @param id the id of the trainee to be deleted
