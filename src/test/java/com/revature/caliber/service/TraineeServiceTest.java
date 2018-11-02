@@ -106,8 +106,8 @@ public class TraineeServiceTest {
 	
 	@Test
 	public void testDelete() {
-		ts.delete(traineeSix);
-		verify(tr).delete(traineeSix);
+		ts.delete(6);
+		verify(tr).delete(6);
 	}
 	
 	@Test
