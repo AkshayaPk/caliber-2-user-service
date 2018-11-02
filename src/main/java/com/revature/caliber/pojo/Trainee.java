@@ -205,7 +205,7 @@ public class Trainee implements Serializable {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj != null && obj instanceof Trainee) {
+		if (obj instanceof Trainee) {
 			Trainee other = (Trainee) obj;
 			return this.batchId.equals(other.batchId);
 		}
