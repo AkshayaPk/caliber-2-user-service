@@ -10,53 +10,53 @@ public enum TrainingStatus implements Serializable{
 	 * Trainee is Signed (has signed the contract)
 	 */
 	@JsonProperty("Signed")
-	Signed,
+	SIGNED,
 	
 	/**
 	 * Trainee is Selected for training
 	 */
 	@JsonProperty("Selected")
-	Selected,
+	SELECTED,
 	
 	/**
 	 * Trainee is currently in training
 	 */
 	@JsonProperty("Training")
-	Training,
+	TRAINING,
 	
 	/**
 	 * Trainee is marketing
 	 */
 	@JsonProperty("Marketing")
-	Marketing,
+	MARKETING,
 	
 	/**
 	 * Trainee is confirmed for training
 	 */
 	@JsonProperty("Confirmed")
-	Confirmed,
+	CONFIRMED,
 	
 	/**
 	 * Trainee is employed
 	 */
 	@JsonProperty("Employed")
-	Employed,
+	EMPLOYED,
 	
 	/**
 	 * Trainee has been dropped
 	 */
 	@JsonProperty("Dropped")
-	Dropped,
+	DROPPED,
 	
 	/**
 	 * Trainee is currently on a project
 	 */
 	@JsonProperty("Project")
-	Project,
+	PROJECT,
 	
 	/**
 	 * Trainee is currently in staging
 	 */
 	@JsonProperty("Staging")
-	Staging
+	STAGING
 }
