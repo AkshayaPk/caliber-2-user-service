@@ -75,7 +75,7 @@ public class TraineeController {
 		return new ResponseEntity<>(trainee, HttpStatus.CREATED);
 	}
 	/**
-	 * Handles post request for creating a trainee in a batch
+	 * Handles put request for creating a trainee in a batch
 	 * @param trainee The trainee to be updated
 	 * @return The updated Trainee object and an accepted http-status code
 	 */
@@ -87,9 +87,9 @@ public class TraineeController {
 		return new ResponseEntity<>(trainee, HttpStatus.ACCEPTED);
 	}
 	/**
-	 * Handles post request for creating a trainee in a batch
-	 * @param trainee The trainee to be updated
-	 * @return The updated Trainee object and an accepted http-status code
+	 * Handles delete request for creating a trainee in a batch
+	 * @param id the id of the trainee to be deleted
+	 * @return a response entity that has a void value and an http-status of NO_CONTENT.
 	 */
 	@DeleteMapping(value="all/trainee/delete/{id}")
 	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED)
