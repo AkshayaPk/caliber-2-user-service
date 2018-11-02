@@ -114,28 +114,9 @@ public class Trainee implements Serializable {
 		this.name = name;
 		this.resourceId = resourceId;
 		this.email = email;
-		this.trainingStatus = TrainingStatus.Training;
+		this.trainingStatus = TrainingStatus.TRAINING;
 		this.batchId = batchId;
 	}
-
-	public Trainee(String name, String email, TrainingStatus trainingStatus, String phoneNumber, String skypeId,
-			String profileUrl, String recruiterName, String college, String degree, String major,
-			String techScreenerName, String projectCompletion) {
-		super();
-		this.name = name;
-		this.email = email;
-		this.trainingStatus = trainingStatus;
-		this.phoneNumber = phoneNumber;
-		this.skypeId = skypeId;
-		this.profileUrl = profileUrl;
-		this.recruiterName = recruiterName;
-		this.college = college;
-		this.degree = degree;
-		this.major = major;
-		this.techScreenerName = techScreenerName;
-		this.projectCompletion = projectCompletion;
-	}
-
 	public Integer getTraineeId() {
 		return traineeId;
 	}
@@ -224,46 +205,13 @@ public class Trainee implements Serializable {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Trainee other = (Trainee) obj;
-		if (email == null) {
-			if (other.email != null)
-				return false;
-		} else if (!email.equals(other.email))
-			return false;
-		if (name == null) {
-			if (other.name != null)
-				return false;
-		} else if (!name.equals(other.name))
-			return false;
-		if (phoneNumber == null) {
-			if (other.phoneNumber != null)
-				return false;
-		} else if (!phoneNumber.equals(other.phoneNumber))
-			return false;
-		if (profileUrl == null) {
-			if (other.profileUrl != null)
-				return false;
-		} else if (!profileUrl.equals(other.profileUrl))
-			return false;
-		if (skypeId == null) {
-			if (other.skypeId != null)
-				return false;
-		} else if (!skypeId.equals(other.skypeId))
-			return false;
-		if (trainingStatus != other.trainingStatus)
-			return false;
-		if (resourceId == null) {
-			if (other.resourceId != null)
-				return false;
-		} else if (!resourceId.equals(other.resourceId))
-			return false;
-		return true;
+		if(obj != null) {
+			if(obj instanceof Trainee) {
+				Trainee other = (Trainee) obj;
+				return this.batchId.equals(other.batchId);
+			}
+		}
+		return false;
 	}
 
 	@Override

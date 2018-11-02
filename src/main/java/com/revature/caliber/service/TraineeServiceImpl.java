@@ -2,8 +2,6 @@ package com.revature.caliber.service;
 
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,11 +18,6 @@ import com.revature.caliber.pojo.Trainee;
 public class TraineeServiceImpl implements TraineeServiceModel {
 	
 	/**
-	 * Logger for the TraineeServiceImpl class
-	 */
-	private static final Logger log = LoggerFactory.getLogger(TraineeServiceImpl.class);
-	
-	/**
 	 * The dao responsible for interacting with the trainee table
 	 */
 	@Autowired 
@@ -37,8 +30,7 @@ public class TraineeServiceImpl implements TraineeServiceModel {
 
 	@Override
 	public List<Trainee> findAllByBatch(Integer batchId) {
-		List<Trainee> trainees = dao.findByBatchId(batchId);
-		return trainees;
+		return dao.findByBatchId(batchId);
 	}
 
 	@Override
