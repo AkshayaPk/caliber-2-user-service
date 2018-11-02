@@ -20,8 +20,8 @@ import org.hibernate.validator.constraints.NotEmpty;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 /**
- * Entity which allows a user to store data in a database using Hibernate.
- * This entity is currently mapped to a table called CALIBER_TRAINEE
+ * Entity which allows a user to store data in a database using Hibernate. This
+ * entity is currently mapped to a table called CALIBER_TRAINEE
  */
 @Entity
 @Table(name = "CALIBER_TRAINEE")
@@ -55,7 +55,6 @@ public class Trainee implements Serializable {
 	@NotNull
 	@Column(name = "BATCH_ID", nullable = false)
 	@JsonBackReference(value = "traineeAndBatch")
-	//@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 	private Integer batchId;
 
 	@Column(name = "PHONE_NUMBER")
@@ -81,8 +80,8 @@ public class Trainee implements Serializable {
 
 	@Column(name = "TECH_SCREENER_NAME")
 	private String techScreenerName;
-	
-	@Column(name = "TECH_SCREEN_SCORE", nullable=true)
+
+	@Column(name = "TECH_SCREEN_SCORE", nullable = true)
 	private Double techScreenScore;
 
 	@Column(name = "REVPRO_PROJECT_COMPLETION")
@@ -104,10 +103,10 @@ public class Trainee implements Serializable {
 	/**
 	 * Constructor used mostly for testing. Default TrainingStatus as Training
 	 * 
-	 * @param name The name of the trainee
+	 * @param name       The name of the trainee
 	 * @param resourceId The resource id
-	 * @param email The trainee's email address
-	 * @param batchId The id of the trainee's batch
+	 * @param email      The trainee's email address
+	 * @param batchId    The id of the trainee's batch
 	 */
 	public Trainee(String name, String resourceId, String email, Integer batchId) {
 		super();
@@ -117,6 +116,7 @@ public class Trainee implements Serializable {
 		this.trainingStatus = TrainingStatus.TRAINING;
 		this.batchId = batchId;
 	}
+
 	public Integer getTraineeId() {
 		return traineeId;
 	}
@@ -205,11 +205,9 @@ public class Trainee implements Serializable {
 
 	@Override
 	public boolean equals(Object obj) {
-		if(obj != null) {
-			if(obj instanceof Trainee) {
-				Trainee other = (Trainee) obj;
-				return this.batchId.equals(other.batchId);
-			}
+		if (obj != null && obj instanceof Trainee) {
+			Trainee other = (Trainee) obj;
+			return this.batchId.equals(other.batchId);
 		}
 		return false;
 	}
