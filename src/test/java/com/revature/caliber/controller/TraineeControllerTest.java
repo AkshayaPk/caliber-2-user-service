@@ -20,7 +20,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import com.revature.caliber.pojo.Trainee;
-import com.revature.caliber.pojo.TrainingStatus;
 import com.revature.caliber.service.TraineeServiceModel;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -47,36 +46,16 @@ public class TraineeControllerTest {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		traineesInBatchOne = new ArrayList<>();
-		traineeOne = new Trainee("John", "John@mail.com", TrainingStatus.Confirmed, "999-999-9999", "25",
-				"http://test.test", "Mapleton", "USF", "Bachelor's of Science", "Computer Science",
-				"Jimmy", "35%");
-		traineeTwo = new Trainee("Mathew", "Matthew@mail.com", TrainingStatus.Employed, "999-999-9999", "25",
-				"http://test.test", "Mapleton", "USF", "Bachelor's of Science", "Computer Science",
-				"Jimmy", "35%");
-		traineeThree = new Trainee("George", "George@mail.com", TrainingStatus.Dropped, "999-999-9999", "25",
-				"http://test.test", "Mapleton", "USF", "Bachelor's of Science", "Computer Science",
-				"Jimmy", "35%");
-		traineeFour = new Trainee("Gina", "Regina@mail.com", TrainingStatus.Staging, "999-999-9999", "25",
-				"http://test.test", "Mapleton", "USF", "Bachelor's of Science", "Computer Science",
-				"Jimmy", "35%");
-		traineeFive = new Trainee("Kelly", "Kelly@mail.com", TrainingStatus.Dropped, "999-999-9999", "25",
-				"http://test.test", "Mapleton", "USF", "Bachelor's of Science", "Computer Science",
-				"Jimmy", "35%");
-		traineeSix = new Trainee("Parker", "Parker@mail.com", TrainingStatus.Confirmed, "999-999-9999", "25",
-				"http://test.test", "Mapleton", "USF", "Bachelor's of Science", "Computer Science",
-				"Jimmy", "35%");
-		traineeSeven = new Trainee("Joshua", "Joshua@mail.com", TrainingStatus.Project, "999-999-9999", "25",
-				"http://test.test", "Mapleton", "USF", "Bachelor's of Science", "Computer Science",
-				"Jimmy", "35%");
-		traineeEight = new Trainee("Charlie", "Charlie@mail.com", TrainingStatus.Dropped, "999-999-9999", "25",
-				"http://test.test", "Mapleton", "USF", "Bachelor's of Science", "Computer Science",
-				"Jimmy", "35%");
-		traineeNine = new Trainee("Erica", "Erica@mail.com", TrainingStatus.Training, "999-999-9999", "25",
-				"http://test.test", "Mapleton", "USF", "Bachelor's of Science", "Computer Science",
-				"Jimmy", "35%");
-		traineeTen = new Trainee("Vicky", "Vicky@mail.com", TrainingStatus.Employed, "999-999-9999", "25",
-				"http://test.test", "Mapleton", "USF", "Bachelor's of Science", "Computer Science",
-				"Jimmy", "35%");
+		traineeOne = new Trainee("John", null, "John@mail.com", 1);
+		traineeTwo = new Trainee("Mathew", null, "Matthew@mail.com", 1);
+		traineeThree = new Trainee("George", null, "George@mail.com", 1);
+		traineeFour = new Trainee("Gina", null, "Regina@mail.com", 1);
+		traineeFive = new Trainee("Kelly", null, "Kelly@mail.com", 1);
+		traineeSix = new Trainee("Parker", null, "Parker@mail.com", 1);
+		traineeSeven = new Trainee("Joshua", null, "Joshua@mail.com", 1);
+		traineeEight = new Trainee("Charlie", null, "Charlie@mail.com", 1);
+		traineeNine = new Trainee("Erica", null, "Erica@mail.com", 1);
+		traineeTen = new Trainee("Vicky", null, "Vicky@mail.com", 1);
 		traineeOne.setTraineeId(1);
 		traineeTwo.setTraineeId(2);
 		traineeThree.setTraineeId(3);

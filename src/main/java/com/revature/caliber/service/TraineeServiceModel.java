@@ -4,7 +4,8 @@ import java.util.List;
 
 import com.revature.caliber.pojo.Trainee;
 
-/**Interface of the service class for handling business logic 
+/**
+ * Interface of the service class for handling business logic 
  * of interacting with trainee objects
  * 
  * @author Christian Dawson, and Justin Donn

@@ -13,20 +13,18 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+
 /**
- * The type Trainee
+ * Entity which allows a user to store data in a database using Hibernate. This
+ * entity is currently mapped to a table called CALIBER_TRAINEE
  */
 @Entity
 @Table(name = "CALIBER_TRAINEE")
-//@Cacheable
-//@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Trainee implements Serializable {
 
 	private static final long serialVersionUID = -9090223980655307018L;
@@ -56,7 +54,6 @@ public class Trainee implements Serializable {
 
 	@NotNull
 	@Column(name = "BATCH_ID", nullable = false)
-	//@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 	private Integer batchId;
 
 	@Column(name = "PHONE_NUMBER")
@@ -68,7 +65,6 @@ public class Trainee implements Serializable {
 	@Column(name = "PROFILE_URL")
 	private String profileUrl;
 
-	// new columns
 	@Column(name = "RECRUITER_NAME")
 	private String recruiterName;
 
@@ -83,13 +79,12 @@ public class Trainee implements Serializable {
 
 	@Column(name = "TECH_SCREENER_NAME")
 	private String techScreenerName;
-	
-	@Column(name = "TECH_SCREEN_SCORE", nullable=true)
+
+	@Column(name = "TECH_SCREEN_SCORE", nullable = true)
 	private Double techScreenScore;
 
 	@Column(name = "REVPRO_PROJECT_COMPLETION")
 	private String projectCompletion;
-	// end of new columns
 
 	@Enumerated(EnumType.STRING)
 	@Column(name = "FLAG_STATUS")
@@ -107,36 +102,18 @@ public class Trainee implements Serializable {
 	/**
 	 * Constructor used mostly for testing. Default TrainingStatus as Training
 	 * 
-	 * @param name The name of the trainee
+	 * @param name       The name of the trainee
 	 * @param resourceId The resource id
-	 * @param email The trainee's email address
-	 * @param batchId The id of the trainee's batch
+	 * @param email      The trainee's email address
+	 * @param batchId    The id of the trainee's batch
 	 */
 	public Trainee(String name, String resourceId, String email, Integer batchId) {
 		super();
 		this.name = name;
 		this.resourceId = resourceId;
 		this.email = email;
-		this.trainingStatus = TrainingStatus.Training;
+		this.trainingStatus = TrainingStatus.TRAINING;
 		this.batchId = batchId;
-	}
-
-	public Trainee(String name, String email, TrainingStatus trainingStatus, String phoneNumber, String skypeId,
-			String profileUrl, String recruiterName, String college, String degree, String major,
-			String techScreenerName, String projectCompletion) {
-		super();
-		this.name = name;
-		this.email = email;
-		this.trainingStatus = trainingStatus;
-		this.phoneNumber = phoneNumber;
-		this.skypeId = skypeId;
-		this.profileUrl = profileUrl;
-		this.recruiterName = recruiterName;
-		this.college = college;
-		this.degree = degree;
-		this.major = major;
-		this.techScreenerName = techScreenerName;
-		this.projectCompletion = projectCompletion;
 	}
 
 	public Integer getTraineeId() {
@@ -227,46 +204,11 @@ public class Trainee implements Serializable {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Trainee other = (Trainee) obj;
-		if (email == null) {
-			if (other.email != null)
-				return false;
-		} else if (!email.equals(other.email))
-			return false;
-		if (name == null) {
-			if (other.name != null)
-				return false;
-		} else if (!name.equals(other.name))
-			return false;
-		if (phoneNumber == null) {
-			if (other.phoneNumber != null)
-				return false;
-		} else if (!phoneNumber.equals(other.phoneNumber))
-			return false;
-		if (profileUrl == null) {
-			if (other.profileUrl != null)
-				return false;
-		} else if (!profileUrl.equals(other.profileUrl))
-			return false;
-		if (skypeId == null) {
-			if (other.skypeId != null)
-				return false;
-		} else if (!skypeId.equals(other.skypeId))
-			return false;
-		if (trainingStatus != other.trainingStatus)
-			return false;
-		if (resourceId == null) {
-			if (other.resourceId != null)
-				return false;
-		} else if (!resourceId.equals(other.resourceId))
-			return false;
-		return true;
+		if (obj instanceof Trainee) {
+			Trainee other = (Trainee) obj;
+			return this.batchId.equals(other.batchId);
+		}
+		return false;
 	}
 
 	@Override

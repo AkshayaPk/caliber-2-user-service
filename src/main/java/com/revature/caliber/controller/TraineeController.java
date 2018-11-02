@@ -2,6 +2,7 @@ package com.revature.caliber.controller;
 
 import java.util.List;
 
+
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
@@ -35,14 +36,8 @@ import com.revature.caliber.service.TraineeServiceModel;
 @CrossOrigin(origins="*")
 public class TraineeController {
 	
-	/**
-	 * Logger for this class
-	 */
 	private static final Logger log = LoggerFactory.getLogger(TraineeController.class);
 	
-	/**
-	 * Autowired interface declaration for the trainee service
-	 */
 	@Autowired
 	private TraineeServiceModel tsm;
 	
@@ -57,7 +52,6 @@ public class TraineeController {
 			@RequestParam(required=true) Integer batch){
 		log.trace("in all/trainee: Looking for batch: " + batch);
 		List<Trainee> trainees = tsm.findAllByBatch(batch);
-		System.out.println(trainees.get(0));
 		return new ResponseEntity<>(trainees, HttpStatus.OK);
 	}
 	
