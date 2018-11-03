@@ -2,8 +2,10 @@ package com.revature.caliber.pojo;
 
 import java.io.Serializable;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+@JsonFormat(shape = JsonFormat.Shape.NATURAL)
 public enum TrainingStatus implements Serializable{
 	
 	/**
