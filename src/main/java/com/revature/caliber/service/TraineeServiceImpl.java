@@ -1,5 +1,6 @@
 package com.revature.caliber.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,5 +51,15 @@ public class TraineeServiceImpl implements TraineeServiceModel {
 			trainee.setBatchId(batchId);
 		}
 		dao.save(trainee);
+	}
+
+	@Override
+	public Integer[][] createArrayOfTraineeCounts(Integer[] batchIds) {
+		Integer[][] toReturn = new Integer[batchIds.length][2];
+		for(int i = 0; i < batchIds.length; i++) {
+			toReturn[i][0] = batchIds[i];
+			toReturn[i][1] = Integer.parseInt("" + dao.countByBatchId(batchIds[i]));
+		}
+		return toReturn;
 	}
 }
