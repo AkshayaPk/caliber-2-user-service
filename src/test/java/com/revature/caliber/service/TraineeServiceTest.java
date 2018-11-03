@@ -46,13 +46,13 @@ public class TraineeServiceTest {
 		traineeOne = new Trainee("John", null, "John@mail.com", 1);
 		traineeTwo = new Trainee("Mathew", null, "Matthew@mail.com", 1);
 		traineeThree = new Trainee("George", null, "George@mail.com", 1);
-		traineeFour = new Trainee("Gina", null, "Regina@mail.com", 1);
-		traineeFive = new Trainee("Kelly", null, "Kelly@mail.com", 1);
-		traineeSix = new Trainee("Parker", null, "Parker@mail.com", 1);
-		traineeSeven = new Trainee("Joshua", null, "Joshua@mail.com", 1);
-		traineeEight = new Trainee("Charlie", null, "Charlie@mail.com", 1);
-		traineeNine = new Trainee("Erica", null, "Erica@mail.com", 1);
-		traineeTen = new Trainee("Vicky", null, "Vicky@mail.com", 1);
+		traineeFour = new Trainee("Gina", null, "Regina@mail.com", 2);
+		traineeFive = new Trainee("Kelly", null, "Kelly@mail.com", 2);
+		traineeSix = new Trainee("Parker", null, "Parker@mail.com", 3);
+		traineeSeven = new Trainee("Joshua", null, "Joshua@mail.com", 3);
+		traineeEight = new Trainee("Charlie", null, "Charlie@mail.com", 3);
+		traineeNine = new Trainee("Erica", null, "Erica@mail.com", 3);
+		traineeTen = new Trainee("Vicky", null, "Vicky@mail.com", 7);
 		traineeOne.setTraineeId(1);
 		traineeTwo.setTraineeId(2);
 		traineeThree.setTraineeId(3);
@@ -66,20 +66,16 @@ public class TraineeServiceTest {
 		traineesInBatchOne.add(traineeOne);
 		traineesInBatchOne.add(traineeTwo);
 		traineesInBatchOne.add(traineeThree);
-		traineesInBatchOne.add(traineeFour);
-		traineesInBatchOne.add(traineeFive);
-		traineesInBatchOne.add(traineeSix);
-		traineesInBatchOne.add(traineeSeven);
-		traineesInBatchOne.add(traineeEight);
-		traineesInBatchOne.add(traineeNine);
-		traineesInBatchOne.add(traineeTen);
 	}
 
 	@Before
 	public void setUp() throws Exception {
-		
 		when(tr.findByBatchId(1)).thenReturn(traineesInBatchOne);
 		when(tr.findOne(3)).thenReturn(traineeThree);
+		when(tr.countByBatchId(1)).thenReturn(3l);
+		when(tr.countByBatchId(2)).thenReturn(2l);
+		when(tr.countByBatchId(3)).thenReturn(4l);
+		when(tr.countByBatchId(7)).thenReturn(1l);
 	}
 
 	@After
@@ -115,5 +111,11 @@ public class TraineeServiceTest {
 		ts.switchBatch(3, 4);
 		verify(tr).findOne(3);
 		verify(tr).save(traineeThree);
+	}
+	
+	@Test
+	public void testCreateArrayOfTraineeCounts() {
+		Integer[][] expected = new Integer[][] {{1,3},{2,2},{3,4},{7,1}};
+		assertEquals(ts.createArrayOfTraineeCounts(new Integer[]{1,2,3,7}), expected);
 	}
 }

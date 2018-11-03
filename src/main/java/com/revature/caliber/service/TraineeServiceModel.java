@@ -44,4 +44,12 @@ public interface TraineeServiceModel {
 	 * @param batchId The id of the batch that the trainee is being switched to
 	 */
 	public void switchBatch(Integer traineeId, Integer batchId);
+
+	/**
+	 * Finds all the trainees associated with every batch
+	 * @param batchIds a list of all batchIds
+	 * @return the number of trainees in each batch in a integer double array
+	 */
+	public Integer[][] createArrayOfTraineeCounts(Integer[] batchIds);
+	
 }
