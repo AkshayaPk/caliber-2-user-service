@@ -92,7 +92,7 @@ public class TraineeController {
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 	/**
-	 * Christian Dawson
+	 * @author Christian Dawson
 	 * @param batchIds the list of batchids to get the trainee counts of
 	 * @return a double integer array containing the passed batchids and their corresponding trainee populace.
 	 */
