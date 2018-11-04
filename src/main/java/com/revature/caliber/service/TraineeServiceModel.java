@@ -4,7 +4,8 @@ import java.util.List;
 
 import com.revature.caliber.pojo.Trainee;
 
-/**Interface of the service class for handling business logic 
+/**
+ * Interface of the service class for handling business logic 
  * of interacting with trainee objects
  * 
  * @author Christian Dawson, and Justin Donn
@@ -35,7 +36,7 @@ public interface TraineeServiceModel {
 	 * Removes a trainee from the database
 	 * @param trainee The trainee to be removed from the database
 	 */
-	public void delete(Trainee trainee);
+	public void delete(Integer traineeId);
 	
 	/**
 	 * Switches the batch of a given trainee to the given batch
@@ -43,4 +44,12 @@ public interface TraineeServiceModel {
 	 * @param batchId The id of the batch that the trainee is being switched to
 	 */
 	public void switchBatch(Integer traineeId, Integer batchId);
+
+	/**
+	 * Finds all the trainees associated with every batch
+	 * @param batchIds a list of all batchIds
+	 * @return the number of trainees in each batch in a integer double array
+	 */
+	public Integer[][] createArrayOfTraineeCounts(Integer[] batchIds);
+	
 }

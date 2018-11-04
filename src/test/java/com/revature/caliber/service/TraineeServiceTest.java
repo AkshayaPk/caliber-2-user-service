@@ -18,7 +18,6 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import com.revature.caliber.dao.TraineeRepository;
 import com.revature.caliber.pojo.Trainee;
-import com.revature.caliber.pojo.TrainingStatus;
 
 @RunWith(MockitoJUnitRunner.class)
 public class TraineeServiceTest {
@@ -44,36 +43,16 @@ public class TraineeServiceTest {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		traineesInBatchOne = new ArrayList<>();
-		traineeOne = new Trainee("John", "John@mail.com", TrainingStatus.Confirmed, "999-999-9999", "25",
-				"http://test.test", "Mapleton", "USF", "Bachelor's of Science", "Computer Science",
-				"Jimmy", "35%");
-		traineeTwo = new Trainee("Mathew", "Matthew@mail.com", TrainingStatus.Employed, "999-999-9999", "25",
-				"http://test.test", "Mapleton", "USF", "Bachelor's of Science", "Computer Science",
-				"Jimmy", "35%");
-		traineeThree = new Trainee("George", "George@mail.com", TrainingStatus.Dropped, "999-999-9999", "25",
-				"http://test.test", "Mapleton", "USF", "Bachelor's of Science", "Computer Science",
-				"Jimmy", "35%");
-		traineeFour = new Trainee("Gina", "Regina@mail.com", TrainingStatus.Staging, "999-999-9999", "25",
-				"http://test.test", "Mapleton", "USF", "Bachelor's of Science", "Computer Science",
-				"Jimmy", "35%");
-		traineeFive = new Trainee("Kelly", "Kelly@mail.com", TrainingStatus.Dropped, "999-999-9999", "25",
-				"http://test.test", "Mapleton", "USF", "Bachelor's of Science", "Computer Science",
-				"Jimmy", "35%");
-		traineeSix = new Trainee("Parker", "Parker@mail.com", TrainingStatus.Confirmed, "999-999-9999", "25",
-				"http://test.test", "Mapleton", "USF", "Bachelor's of Science", "Computer Science",
-				"Jimmy", "35%");
-		traineeSeven = new Trainee("Joshua", "Joshua@mail.com", TrainingStatus.Project, "999-999-9999", "25",
-				"http://test.test", "Mapleton", "USF", "Bachelor's of Science", "Computer Science",
-				"Jimmy", "35%");
-		traineeEight = new Trainee("Charlie", "Charlie@mail.com", TrainingStatus.Dropped, "999-999-9999", "25",
-				"http://test.test", "Mapleton", "USF", "Bachelor's of Science", "Computer Science",
-				"Jimmy", "35%");
-		traineeNine = new Trainee("Erica", "Erica@mail.com", TrainingStatus.Training, "999-999-9999", "25",
-				"http://test.test", "Mapleton", "USF", "Bachelor's of Science", "Computer Science",
-				"Jimmy", "35%");
-		traineeTen = new Trainee("Vicky", "Vicky@mail.com", TrainingStatus.Employed, "999-999-9999", "25",
-				"http://test.test", "Mapleton", "USF", "Bachelor's of Science", "Computer Science",
-				"Jimmy", "35%");
+		traineeOne = new Trainee("John", null, "John@mail.com", 1);
+		traineeTwo = new Trainee("Mathew", null, "Matthew@mail.com", 1);
+		traineeThree = new Trainee("George", null, "George@mail.com", 1);
+		traineeFour = new Trainee("Gina", null, "Regina@mail.com", 2);
+		traineeFive = new Trainee("Kelly", null, "Kelly@mail.com", 2);
+		traineeSix = new Trainee("Parker", null, "Parker@mail.com", 3);
+		traineeSeven = new Trainee("Joshua", null, "Joshua@mail.com", 3);
+		traineeEight = new Trainee("Charlie", null, "Charlie@mail.com", 3);
+		traineeNine = new Trainee("Erica", null, "Erica@mail.com", 3);
+		traineeTen = new Trainee("Vicky", null, "Vicky@mail.com", 7);
 		traineeOne.setTraineeId(1);
 		traineeTwo.setTraineeId(2);
 		traineeThree.setTraineeId(3);
@@ -87,20 +66,16 @@ public class TraineeServiceTest {
 		traineesInBatchOne.add(traineeOne);
 		traineesInBatchOne.add(traineeTwo);
 		traineesInBatchOne.add(traineeThree);
-		traineesInBatchOne.add(traineeFour);
-		traineesInBatchOne.add(traineeFive);
-		traineesInBatchOne.add(traineeSix);
-		traineesInBatchOne.add(traineeSeven);
-		traineesInBatchOne.add(traineeEight);
-		traineesInBatchOne.add(traineeNine);
-		traineesInBatchOne.add(traineeTen);
 	}
 
 	@Before
 	public void setUp() throws Exception {
-		
 		when(tr.findByBatchId(1)).thenReturn(traineesInBatchOne);
 		when(tr.findOne(3)).thenReturn(traineeThree);
+		when(tr.countByBatchId(1)).thenReturn(3l);
+		when(tr.countByBatchId(2)).thenReturn(2l);
+		when(tr.countByBatchId(3)).thenReturn(4l);
+		when(tr.countByBatchId(7)).thenReturn(1l);
 	}
 
 	@After
@@ -127,8 +102,8 @@ public class TraineeServiceTest {
 	
 	@Test
 	public void testDelete() {
-		ts.delete(traineeSix);
-		verify(tr).delete(traineeSix);
+		ts.delete(6);
+		verify(tr).delete(6);
 	}
 	
 	@Test
@@ -136,5 +111,11 @@ public class TraineeServiceTest {
 		ts.switchBatch(3, 4);
 		verify(tr).findOne(3);
 		verify(tr).save(traineeThree);
+	}
+	
+	@Test
+	public void testCreateArrayOfTraineeCounts() {
+		Integer[][] expected = new Integer[][] {{1,3},{2,2},{3,4},{7,1}};
+		assertEquals(ts.createArrayOfTraineeCounts(new Integer[]{1,2,3,7}), expected);
 	}
 }

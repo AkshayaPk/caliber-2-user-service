@@ -1,6 +1,7 @@
 package com.revature.caliber.controller;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
@@ -19,7 +20,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import com.revature.caliber.pojo.Trainee;
-import com.revature.caliber.pojo.TrainingStatus;
 import com.revature.caliber.service.TraineeServiceModel;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -46,36 +46,16 @@ public class TraineeControllerTest {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		traineesInBatchOne = new ArrayList<>();
-		traineeOne = new Trainee("John", "John@mail.com", TrainingStatus.Confirmed, "999-999-9999", "25",
-				"http://test.test", "Mapleton", "USF", "Bachelor's of Science", "Computer Science",
-				"Jimmy", "35%");
-		traineeTwo = new Trainee("Mathew", "Matthew@mail.com", TrainingStatus.Employed, "999-999-9999", "25",
-				"http://test.test", "Mapleton", "USF", "Bachelor's of Science", "Computer Science",
-				"Jimmy", "35%");
-		traineeThree = new Trainee("George", "George@mail.com", TrainingStatus.Dropped, "999-999-9999", "25",
-				"http://test.test", "Mapleton", "USF", "Bachelor's of Science", "Computer Science",
-				"Jimmy", "35%");
-		traineeFour = new Trainee("Gina", "Regina@mail.com", TrainingStatus.Staging, "999-999-9999", "25",
-				"http://test.test", "Mapleton", "USF", "Bachelor's of Science", "Computer Science",
-				"Jimmy", "35%");
-		traineeFive = new Trainee("Kelly", "Kelly@mail.com", TrainingStatus.Dropped, "999-999-9999", "25",
-				"http://test.test", "Mapleton", "USF", "Bachelor's of Science", "Computer Science",
-				"Jimmy", "35%");
-		traineeSix = new Trainee("Parker", "Parker@mail.com", TrainingStatus.Confirmed, "999-999-9999", "25",
-				"http://test.test", "Mapleton", "USF", "Bachelor's of Science", "Computer Science",
-				"Jimmy", "35%");
-		traineeSeven = new Trainee("Joshua", "Joshua@mail.com", TrainingStatus.Project, "999-999-9999", "25",
-				"http://test.test", "Mapleton", "USF", "Bachelor's of Science", "Computer Science",
-				"Jimmy", "35%");
-		traineeEight = new Trainee("Charlie", "Charlie@mail.com", TrainingStatus.Dropped, "999-999-9999", "25",
-				"http://test.test", "Mapleton", "USF", "Bachelor's of Science", "Computer Science",
-				"Jimmy", "35%");
-		traineeNine = new Trainee("Erica", "Erica@mail.com", TrainingStatus.Training, "999-999-9999", "25",
-				"http://test.test", "Mapleton", "USF", "Bachelor's of Science", "Computer Science",
-				"Jimmy", "35%");
-		traineeTen = new Trainee("Vicky", "Vicky@mail.com", TrainingStatus.Employed, "999-999-9999", "25",
-				"http://test.test", "Mapleton", "USF", "Bachelor's of Science", "Computer Science",
-				"Jimmy", "35%");
+		traineeOne = new Trainee("John", null, "John@mail.com", 1);
+		traineeTwo = new Trainee("Mathew", null, "Matthew@mail.com", 1);
+		traineeThree = new Trainee("George", null, "George@mail.com", 1);
+		traineeFour = new Trainee("Gina", null, "Regina@mail.com", 2);
+		traineeFive = new Trainee("Kelly", null, "Kelly@mail.com", 2);
+		traineeSix = new Trainee("Parker", null, "Parker@mail.com", 3);
+		traineeSeven = new Trainee("Joshua", null, "Joshua@mail.com", 3);
+		traineeEight = new Trainee("Charlie", null, "Charlie@mail.com", 3);
+		traineeNine = new Trainee("Erica", null, "Erica@mail.com", 3);
+		traineeTen = new Trainee("Vicky", null, "Vicky@mail.com", 7);
 		traineeOne.setTraineeId(1);
 		traineeTwo.setTraineeId(2);
 		traineeThree.setTraineeId(3);
@@ -89,13 +69,6 @@ public class TraineeControllerTest {
 		traineesInBatchOne.add(traineeOne);
 		traineesInBatchOne.add(traineeTwo);
 		traineesInBatchOne.add(traineeThree);
-		traineesInBatchOne.add(traineeFour);
-		traineesInBatchOne.add(traineeFive);
-		traineesInBatchOne.add(traineeSix);
-		traineesInBatchOne.add(traineeSeven);
-		traineesInBatchOne.add(traineeEight);
-		traineesInBatchOne.add(traineeNine);
-		traineesInBatchOne.add(traineeTen);
 	}
 
 	@AfterClass
@@ -105,6 +78,7 @@ public class TraineeControllerTest {
 	@Before
 	public void setUp() throws Exception {
 		when(tsm.findAllByBatch(1)).thenReturn(traineesInBatchOne);
+		when(tsm.createArrayOfTraineeCounts(new Integer[]{1,2,3,7})).thenReturn(new Integer[][]{{1,3},{2,2},{3,4},{7,1}});
 	}
 
 	@After
@@ -117,5 +91,29 @@ public class TraineeControllerTest {
 				new ResponseEntity<>(traineesInBatchOne, HttpStatus.OK),
 				this.tc.findAllByBatch(1));
 	}
-
+	@Test
+	public void testCreateTrainee() {
+		ResponseEntity<Trainee> trainee = tc.createTrainee(traineeNine);
+		verify(tsm).save(traineeNine);
+		assertEquals(traineeNine, trainee.getBody());
+	}
+	@Test
+	public void testUpdateTrianee() {
+		Trainee changedTrainee = new Trainee();
+		changedTrainee.setTraineeId(1);
+		changedTrainee.setEmail("updatedEmail");
+		ResponseEntity<Trainee> trainee = tc.updateTrainee(changedTrainee);
+		verify(tsm).update(changedTrainee);
+		assertEquals(changedTrainee, trainee.getBody());
+	}
+	@Test
+	public void testDeleteTrainee() {
+		tc.deleteTrainee(4);
+		verify(tsm).delete(4);
+	}
+	
+	@Test
+	public void testGetAllTraineesForAllBatches() {
+		assertEquals(tc.getAllTraineesForAllBatches(new Integer[] {1,2,3,7}).getBody(), new Integer[][]{{1,3},{2,2},{3,4},{7,1}});
+	}
 }
