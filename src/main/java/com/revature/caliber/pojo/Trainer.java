@@ -34,7 +34,7 @@ public class Trainer implements Serializable {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TRAINER_ID_SEQUENCE")
 	@SequenceGenerator(name = "TRAINER_ID_SEQUENCE", sequenceName = "TRAINER_ID_SEQUENCE")
 	@JsonProperty
-	private int trainerId;
+	private Integer trainerId;
 
 	@NotEmpty
 	@Column(name = "NAME", nullable = false)
@@ -77,11 +77,11 @@ public class Trainer implements Serializable {
 		this.tier = tier;
 	}
 
-	public int getTrainerId() {
+	public Integer getTrainerId() {
 		return trainerId;
 	}
 
-	public void setTrainerId(int trainerId) {
+	public void setTrainerId(Integer trainerId) {
 		this.trainerId = trainerId;
 	}
 
@@ -144,40 +144,40 @@ public class Trainer implements Serializable {
 		return result;
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Trainer other = (Trainer) obj;
-		if (email == null) {
-			if (other.email != null)
-				return false;
-		} else if (!email.equals(other.email))
-			return false;
-		if (name == null) {
-			if (other.name != null)
-				return false;
-		} else if (!name.equals(other.name))
-			return false;
-		if (password == null) {
-			if (other.password != null)
-				return false;
-		} else if (!password.equals(other.password))
-			return false;
-		if (tier != other.tier)
-			return false;
-		if (title == null) {
-			if (other.title != null)
-				return false;
-		} else if (!title.equals(other.title))
-			return false;
-		if (trainerId != other.trainerId)
-			return false;
-		return true;
-	}
-	
+/*//	@Override
+//	public boolean equals(Object obj) {
+//		if (this == obj)
+//			return true;
+//		if (obj == null)
+//			return false;
+//		if (getClass() != obj.getClass())
+//			return false;
+//		Trainer other = (Trainer) obj;
+//		if (email == null) {
+//			if (other.email != null)
+//				return false;
+//		} else if (!email.equals(other.email))
+//			return false;
+//		if (name == null) {
+//			if (other.name != null)
+//				return false;
+//		} else if (!name.equals(other.name))
+//			return false;
+//		if (password == null) {
+//			if (other.password != null)
+//				return false;
+//		} else if (!password.equals(other.password))
+//			return false;
+//		if (tier != other.tier)
+//			return false;
+//		if (title == null) {
+//			if (other.title != null)
+//				return false;
+//		} else if (!title.equals(other.title))
+//			return false;
+//		if (trainerId != other.trainerId)
+//			return false;
+//		return true;
+//	}
+*/	
 }
