@@ -1,8 +1,6 @@
-package com.revature.caliber.service;
+package com.revature.caliber.controller;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.fail;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
@@ -17,19 +15,21 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
-import com.revature.caliber.dao.TrainerRepository;
 import com.revature.caliber.pojo.Trainer;
 import com.revature.caliber.pojo.TrainerRole;
+import com.revature.caliber.service.TrainerServiceModel;
 
 @RunWith(MockitoJUnitRunner.class)
-public class TrainerServiceTest {
+public class TrainerControllerTest {
 	
 	@Mock
-	TrainerRepository dao;
+	TrainerServiceModel tsm;
 	
 	@InjectMocks
-	TrainerServiceImpl tsi;
+	TrainerController tc;
 	
 	private static Trainer trainerOne;
 	private static Trainer trainerTwo;
@@ -84,7 +84,7 @@ public class TrainerServiceTest {
 
 	@Before
 	public void setUp() throws Exception {
-		when(dao.findAll()).thenReturn(trainers);
+		when(tsm.getAllTrainers()).thenReturn(trainers);
 	}
 
 	@After
@@ -93,7 +93,9 @@ public class TrainerServiceTest {
 
 	@Test
 	public void testGetAllTrainers() {
-		assertEquals("Testing get all trainers method", trainers, tsi.getAllTrainers());
+		assertEquals("Testing the get all trainers method", 
+				new ResponseEntity<>(trainers, HttpStatus.OK),
+				tc.getAllTrainers());
 	}
 
 }

@@ -17,12 +17,5 @@ public interface TrainerServiceModel {
 	 * @return A list of all of the trainers in the database
 	 */
 	public List<Trainer> getAllTrainers();
-	
-	/**
-	 * Gets a trainer by the passed id
-	 * @param trainerId The id of the trainer to retrieve
-	 * @return A trainer object from the database
-	 */
-	public Trainer getTrainerById(Integer trainerId);
 
 }

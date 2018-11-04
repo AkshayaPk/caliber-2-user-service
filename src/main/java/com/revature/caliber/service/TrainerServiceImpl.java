@@ -3,6 +3,7 @@ package com.revature.caliber.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.revature.caliber.dao.TrainerRepository;
 import com.revature.caliber.pojo.Trainer;
@@ -12,6 +13,7 @@ import com.revature.caliber.pojo.Trainer;
  * @author Ben Nemec
  *
  */
+@Service
 public class TrainerServiceImpl implements TrainerServiceModel {
 	
 	@Autowired
@@ -20,11 +22,6 @@ public class TrainerServiceImpl implements TrainerServiceModel {
 	@Override
 	public List<Trainer> getAllTrainers() {
 		return dao.findAll();
-	}
-
-	@Override
-	public Trainer getTrainerById(Integer trainerId) {
-		return dao.findOne(trainerId);
 	}
 
 }
