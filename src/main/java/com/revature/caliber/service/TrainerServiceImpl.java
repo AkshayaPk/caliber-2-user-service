@@ -19,12 +19,12 @@ public class TrainerServiceImpl implements TrainerServiceModel {
 
 	@Override
 	public List<Trainer> getAllTrainers() {
-		return null;
+		return dao.findAll();
 	}
 
 	@Override
 	public Trainer getTrainerById(Integer trainerId) {
-		return null;
+		return dao.findOne(trainerId);
 	}
 
 }
