@@ -40,7 +40,7 @@ public class TraineeServiceImpl implements TraineeServiceModel {
 
 	@Override
 	public void delete(Integer traineeId) {
-		dao.delete(traineeId);;
+		dao.delete(traineeId);
 	}
 	
 	@Override

@@ -17,8 +17,6 @@ import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
 /**
  * Entity which allows a user to store data in a database using Hibernate. This
  * entity is currently mapped to a table called CALIBER_TRAINEE
@@ -186,6 +184,11 @@ public class Trainee implements Serializable {
 
 	public void setResourceId(String resourceId) {
 		this.resourceId = resourceId;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		return super.equals(obj);
 	}
 
 	@Override
