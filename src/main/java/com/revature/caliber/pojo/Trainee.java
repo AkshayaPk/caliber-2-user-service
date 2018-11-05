@@ -203,15 +203,6 @@ public class Trainee implements Serializable {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (obj instanceof Trainee) {
-			Trainee other = (Trainee) obj;
-			return this.batchId.equals(other.batchId);
-		}
-		return false;
-	}
-
-	@Override
 	public String toString() {
 		return "Trainee [traineeId=" + traineeId + ", resourceId=" + resourceId + ", name=" + name + ", email=" + email
 				+ ", trainingStatus=" + trainingStatus + ", batchId=" + batchId + ", phoneNumber=" + phoneNumber
