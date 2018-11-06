@@ -59,11 +59,6 @@ public class Trainer implements Serializable {
 
 	@Column(name = "TRAINER_PASSWORD")
 	private String password;
-
-	/*@OneToMany(mappedBy = "trainer", fetch = FetchType.LAZY)
-	@JsonIgnore
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-	private Set<Batch> batches;*/
 	
 	public Trainer() {
 		super();
@@ -144,40 +139,9 @@ public class Trainer implements Serializable {
 		return result;
 	}
 
-/*//	@Override
-//	public boolean equals(Object obj) {
-//		if (this == obj)
-//			return true;
-//		if (obj == null)
-//			return false;
-//		if (getClass() != obj.getClass())
-//			return false;
-//		Trainer other = (Trainer) obj;
-//		if (email == null) {
-//			if (other.email != null)
-//				return false;
-//		} else if (!email.equals(other.email))
-//			return false;
-//		if (name == null) {
-//			if (other.name != null)
-//				return false;
-//		} else if (!name.equals(other.name))
-//			return false;
-//		if (password == null) {
-//			if (other.password != null)
-//				return false;
-//		} else if (!password.equals(other.password))
-//			return false;
-//		if (tier != other.tier)
-//			return false;
-//		if (title == null) {
-//			if (other.title != null)
-//				return false;
-//		} else if (!title.equals(other.title))
-//			return false;
-//		if (trainerId != other.trainerId)
-//			return false;
-//		return true;
-//	}
-*/	
+	@Override
+	public boolean equals(Object arg0) {
+		// TODO Auto-generated method stub
+		return super.equals(arg0);
+	}
 }

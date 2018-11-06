@@ -64,7 +64,6 @@ public class TraineeController {
 	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED)
 	public ResponseEntity<Trainee> createTrainee(@Valid @RequestBody Trainee trainee) {
 		log.debug("Saving trainee: " + trainee);
-		System.out.println(trainee);
 		tsm.save(trainee);
 		return new ResponseEntity<>(trainee, HttpStatus.CREATED);
 	}
@@ -100,6 +99,6 @@ public class TraineeController {
 	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED)
 	public ResponseEntity<Integer[][]> getAllTraineesForAllBatches(@RequestBody Integer[] batchIds){
 		Integer[][] toReturn = tsm.createArrayOfTraineeCounts(batchIds);
-		return new ResponseEntity<Integer[][]>(toReturn, HttpStatus.OK);
+		return new ResponseEntity<>(toReturn, HttpStatus.OK);
 	}
 }

@@ -1,6 +1,5 @@
 package com.revature.caliber.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +40,7 @@ public class TraineeServiceImpl implements TraineeServiceModel {
 
 	@Override
 	public void delete(Integer traineeId) {
-		dao.delete(traineeId);;
+		dao.delete(traineeId);
 	}
 	
 	@Override
