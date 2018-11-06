@@ -187,6 +187,11 @@ public class Trainee implements Serializable {
 	}
 
 	@Override
+	public boolean equals(Object obj) {
+		return super.equals(obj);
+	}
+
+	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
@@ -198,11 +203,6 @@ public class Trainee implements Serializable {
 		result = prime * result + ((trainingStatus == null) ? 0 : trainingStatus.hashCode());
 		result = prime * result + ((resourceId == null) ? 0 : resourceId.hashCode());
 		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		return super.equals(obj);
 	}
 
 	@Override
