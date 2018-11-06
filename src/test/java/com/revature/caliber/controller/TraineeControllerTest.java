@@ -1,6 +1,7 @@
 package com.revature.caliber.controller;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
@@ -96,5 +97,24 @@ public class TraineeControllerTest {
 				new ResponseEntity<>(traineesInBatchOne, HttpStatus.OK),
 				this.tc.findAllByBatch(1));
 	}
-
+	@Test
+	public void testCreateTrainee() {
+		ResponseEntity<Trainee> trainee = tc.createTrainee(traineeNine);
+		verify(tsm).save(traineeNine);
+		assertEquals(traineeNine, trainee.getBody());
+	}
+	@Test
+	public void testUpdateTrianee() {
+		Trainee changedTrainee = new Trainee();
+		changedTrainee.setTraineeId(1);
+		changedTrainee.setEmail("updatedEmail");
+		ResponseEntity<Trainee> trainee = tc.updateTrainee(changedTrainee);
+		verify(tsm).update(changedTrainee);
+		assertEquals(changedTrainee, trainee.getBody());
+	}
+	@Test
+	public void testDeleteTrainee() {
+		tc.deleteTrainee(4);
+		verify(tsm).delete(4);
+	}
 }
