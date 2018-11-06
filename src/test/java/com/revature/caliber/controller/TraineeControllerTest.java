@@ -1,5 +1,6 @@
 package com.revature.caliber.controller;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -114,6 +115,8 @@ public class TraineeControllerTest {
 	
 	@Test
 	public void testGetAllTraineesForAllBatches() {
-		assertEquals(tc.getAllTraineesForAllBatches(new Integer[] {1,2,3,7}).getBody(), new Integer[][]{{1,3},{2,2},{3,4},{7,1}});
+		assertArrayEquals("Testing getting counts of all trainees for all batches",
+				tc.getAllTraineesForAllBatches(new Integer[] {1,2,3,7}).getBody(),
+				new Integer[][]{{1,3},{2,2},{3,4},{7,1}});
 	}
 }

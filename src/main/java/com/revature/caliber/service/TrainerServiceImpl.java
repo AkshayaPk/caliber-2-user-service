@@ -16,6 +16,9 @@ import com.revature.caliber.pojo.Trainer;
 @Service
 public class TrainerServiceImpl implements TrainerServiceModel {
 	
+	/**
+	 * The dao responsible for interacting with the trainer table
+	 */
 	@Autowired
 	TrainerRepository dao;
 

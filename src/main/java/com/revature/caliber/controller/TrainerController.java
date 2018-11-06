@@ -15,6 +15,11 @@ import com.revature.caliber.service.TrainerServiceModel;
 
 @RestController
 @CrossOrigin(origins="*")
+/**
+ * Controller for handling all requests having to do with Trainers
+ * @author Ben Nemec
+ *
+ */
 public class TrainerController {
 	
 	@Autowired

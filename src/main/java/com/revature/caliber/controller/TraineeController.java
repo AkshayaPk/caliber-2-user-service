@@ -29,7 +29,7 @@ import com.revature.caliber.service.TraineeServiceModel;
 
 /** Controller for handling all requests having to do with trainees.
  * 
- * @author Ben Nemec and Jacques Myette
+ * @author Ben Nemec, Christian Dawson and Jacques Myette
  *
  */
 @RestController

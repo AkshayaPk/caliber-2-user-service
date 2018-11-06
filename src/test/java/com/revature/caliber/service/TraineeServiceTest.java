@@ -1,5 +1,6 @@
 package com.revature.caliber.service;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -116,6 +117,8 @@ public class TraineeServiceTest {
 	@Test
 	public void testCreateArrayOfTraineeCounts() {
 		Integer[][] expected = new Integer[][] {{1,3},{2,2},{3,4},{7,1}};
-		assertEquals(ts.createArrayOfTraineeCounts(new Integer[]{1,2,3,7}), expected);
+		assertArrayEquals("Testing making the array of trainee counts", 
+				ts.createArrayOfTraineeCounts(new Integer[]{1,2,3,7}),
+				expected);
 	}
 }

@@ -93,7 +93,8 @@ public class TrainerServiceTest {
 
 	@Test
 	public void testGetAllTrainers() {
-		assertEquals("Testing get all trainers method", trainers, tsi.getAllTrainers());
+		assertEquals("Testing get all trainers method", trainers,
+				tsi.getAllTrainers());
 	}
 
 }
