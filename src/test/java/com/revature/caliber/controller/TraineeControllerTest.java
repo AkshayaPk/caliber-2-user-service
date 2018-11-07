@@ -1,8 +1,16 @@
 package com.revature.caliber.controller;
 
 import static org.junit.Assert.assertEquals;
+import static io.restassured.RestAssured.get;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+
+import io.restassured.RestAssured;
+import io.restassured.RestAssured.*;
+
+import static io.restassured.RestAssured.*;
+import io.restassured.matcher.RestAssuredMatchers.*;
+import org.hamcrest.Matchers.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,15 +23,25 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import org.mockito.runners.MockitoJUnitRunner;
+import org.springframework.boot.context.embedded.LocalServerPort;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.test.context.junit4.SpringRunner;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.revature.caliber.Application;
 import com.revature.caliber.pojo.Trainee;
 import com.revature.caliber.service.TraineeServiceModel;
 
-@RunWith(MockitoJUnitRunner.class)
+@RunWith(SpringRunner.class)
+@SpringBootTest(classes = Application.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class TraineeControllerTest {
+	       
+	@LocalServerPort
+	private int port;
 	
 	@Mock
 	TraineeServiceModel tsm;
@@ -77,6 +95,8 @@ public class TraineeControllerTest {
 
 	@Before
 	public void setUp() throws Exception {
+		MockitoAnnotations.initMocks(this);
+		RestAssured.port = port;
 		when(tsm.findAllByBatch(1)).thenReturn(traineesInBatchOne);
 		when(tsm.createArrayOfTraineeCounts(new Integer[]{1,2,3,7})).thenReturn(new Integer[][]{{1,3},{2,2},{3,4},{7,1}});
 	}
@@ -115,5 +135,10 @@ public class TraineeControllerTest {
 	@Test
 	public void testGetAllTraineesForAllBatches() {
 		assertEquals(tc.getAllTraineesForAllBatches(new Integer[] {1,2,3,7}).getBody(), new Integer[][]{{1,3},{2,2},{3,4},{7,1}});
+	}
+	@Test
+	public void restAssuredTest() {
+		get("all/trainee?batch=2").then().statusCode(200);
+		when().request("GET", "all/trainee?batch=2").then().statusCode(200);
 	}
 }
