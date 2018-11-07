@@ -33,7 +33,7 @@ import com.revature.caliber.service.TraineeServiceModel;
  *
  */
 @RestController
-@CrossOrigin(origins="*")
+@CrossOrigin(origins= "*")
 public class TraineeController {
 	
 	private static final Logger log = LoggerFactory.getLogger(TraineeController.class);
