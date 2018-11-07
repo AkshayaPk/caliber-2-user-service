@@ -95,7 +95,7 @@ public class TraineeController {
 	 * @param batchIds the list of batchids to get the trainee counts of
 	 * @return a double integer array containing the passed batchids and their corresponding trainee populace.
 	 */
-	@PostMapping(value="all/count/", produces=MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(value="all/trainee/count/", produces=MediaType.APPLICATION_JSON_VALUE)
 	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED)
 	public ResponseEntity<Integer[][]> getAllTraineesForAllBatches(@RequestBody Integer[] batchIds){
 		Integer[][] toReturn = tsm.createArrayOfTraineeCounts(batchIds);
