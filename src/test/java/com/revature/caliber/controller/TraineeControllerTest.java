@@ -137,6 +137,5 @@ public class TraineeControllerTest {
 	@Test
 	public void restAssuredTest() {
 		get("all/trainee?batch=2").then().statusCode(200);
-		// when().request("GET", "all/trainee?batch=2").then().statusCode(200);
 	}
 }
