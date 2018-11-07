@@ -1,5 +1,6 @@
 package com.revature.caliber.controller;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -49,13 +50,13 @@ public class TraineeControllerTest {
 		traineeOne = new Trainee("John", null, "John@mail.com", 1);
 		traineeTwo = new Trainee("Mathew", null, "Matthew@mail.com", 1);
 		traineeThree = new Trainee("George", null, "George@mail.com", 1);
-		traineeFour = new Trainee("Gina", null, "Regina@mail.com", 1);
-		traineeFive = new Trainee("Kelly", null, "Kelly@mail.com", 1);
-		traineeSix = new Trainee("Parker", null, "Parker@mail.com", 1);
-		traineeSeven = new Trainee("Joshua", null, "Joshua@mail.com", 1);
-		traineeEight = new Trainee("Charlie", null, "Charlie@mail.com", 1);
-		traineeNine = new Trainee("Erica", null, "Erica@mail.com", 1);
-		traineeTen = new Trainee("Vicky", null, "Vicky@mail.com", 1);
+		traineeFour = new Trainee("Gina", null, "Regina@mail.com", 2);
+		traineeFive = new Trainee("Kelly", null, "Kelly@mail.com", 2);
+		traineeSix = new Trainee("Parker", null, "Parker@mail.com", 3);
+		traineeSeven = new Trainee("Joshua", null, "Joshua@mail.com", 3);
+		traineeEight = new Trainee("Charlie", null, "Charlie@mail.com", 3);
+		traineeNine = new Trainee("Erica", null, "Erica@mail.com", 3);
+		traineeTen = new Trainee("Vicky", null, "Vicky@mail.com", 7);
 		traineeOne.setTraineeId(1);
 		traineeTwo.setTraineeId(2);
 		traineeThree.setTraineeId(3);
@@ -69,13 +70,6 @@ public class TraineeControllerTest {
 		traineesInBatchOne.add(traineeOne);
 		traineesInBatchOne.add(traineeTwo);
 		traineesInBatchOne.add(traineeThree);
-		traineesInBatchOne.add(traineeFour);
-		traineesInBatchOne.add(traineeFive);
-		traineesInBatchOne.add(traineeSix);
-		traineesInBatchOne.add(traineeSeven);
-		traineesInBatchOne.add(traineeEight);
-		traineesInBatchOne.add(traineeNine);
-		traineesInBatchOne.add(traineeTen);
 	}
 
 	@AfterClass
@@ -85,6 +79,7 @@ public class TraineeControllerTest {
 	@Before
 	public void setUp() throws Exception {
 		when(tsm.findAllByBatch(1)).thenReturn(traineesInBatchOne);
+		when(tsm.createArrayOfTraineeCounts(new Integer[]{1,2,3,7})).thenReturn(new Integer[][]{{1,3},{2,2},{3,4},{7,1}});
 	}
 
 	@After
@@ -116,5 +111,12 @@ public class TraineeControllerTest {
 	public void testDeleteTrainee() {
 		tc.deleteTrainee(4);
 		verify(tsm).delete(4);
+	}
+	
+	@Test
+	public void testGetAllTraineesForAllBatches() {
+		assertArrayEquals("Testing getting counts of all trainees for all batches",
+				tc.getAllTraineesForAllBatches(new Integer[] {1,2,3,7}).getBody(),
+				new Integer[][]{{1,3},{2,2},{3,4},{7,1}});
 	}
 }

@@ -51,4 +51,14 @@ public class TraineeServiceImpl implements TraineeServiceModel {
 		}
 		dao.save(trainee);
 	}
+
+	@Override
+	public Integer[][] createArrayOfTraineeCounts(Integer[] batchIds) {
+		Integer[][] toReturn = new Integer[batchIds.length][2];
+		for(int i = 0; i < batchIds.length; i++) {
+			toReturn[i][0] = batchIds[i];
+			toReturn[i][1] = Integer.parseInt("" + dao.countByBatchId(batchIds[i]));
+		}
+		return toReturn;
+	}
 }

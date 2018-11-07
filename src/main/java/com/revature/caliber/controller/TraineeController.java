@@ -29,7 +29,7 @@ import com.revature.caliber.service.TraineeServiceModel;
 
 /** Controller for handling all requests having to do with trainees.
  * 
- * @author Ben Nemec and Jacques Myette
+ * @author Ben Nemec, Christian Dawson and Jacques Myette
  *
  */
 @RestController
@@ -90,5 +90,15 @@ public class TraineeController {
 		tsm.delete(id);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
-
+	/**
+	 * @author Christian Dawson
+	 * @param batchIds the list of batchids to get the trainee counts of
+	 * @return a double integer array containing the passed batchids and their corresponding trainee populace.
+	 */
+	@PostMapping(value="all/count/", produces=MediaType.APPLICATION_JSON_VALUE)
+	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED)
+	public ResponseEntity<Integer[][]> getAllTraineesForAllBatches(@RequestBody Integer[] batchIds){
+		Integer[][] toReturn = tsm.createArrayOfTraineeCounts(batchIds);
+		return new ResponseEntity<>(toReturn, HttpStatus.OK);
+	}
 }
