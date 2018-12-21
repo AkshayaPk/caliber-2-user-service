@@ -1,6 +1,7 @@
 package com.revature.caliber.pojo;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -97,14 +98,15 @@ public class Trainee implements Serializable {
  	*/
 	@Length(min = 0, max = 4000)
 	@Column(name = "FLAG_TIMESTAMP", length = 4000)
-	private String flagNoteTimestamp;
+	private Timestamp flagNoteTimestamp;
 
 	/**
  	* Author of the most recent Trainee flag change
  	*/
 	@Length(min = 0, max = 4000)
 	@Column(name = "FLAG_AUTHOR", length = 4000)
-	private String flagNoteAuthor;
+	private Trainer flagNoteAuthor;
+	
 	public Trainee() {
 		super();
 		this.flagStatus = TraineeFlag.NONE;
