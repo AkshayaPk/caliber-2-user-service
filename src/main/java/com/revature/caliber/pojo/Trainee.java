@@ -96,15 +96,13 @@ public class Trainee implements Serializable {
 	/**
  	* Most recent timestamp when the Trainee flag was changed
  	*/
-	@Length(min = 0, max = 4000)
-	@Column(name = "FLAG_TIMESTAMP", length = 4000)
+	@Column(name = "FLAG_TIMESTAMP")
 	private Timestamp flagNoteTimestamp;
 
 	/**
  	* Author of the most recent Trainee flag change
  	*/
-	@Length(min = 0, max = 4000)
-	@Column(name = "FLAG_AUTHOR", length = 4000)
+	@Column(name = "FLAG_AUTHOR")
 	private Trainer flagNoteAuthor;
 	
 	public Trainee() {
